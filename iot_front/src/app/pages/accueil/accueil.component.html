@@ -1,0 +1,55 @@
+<div class="container mt-3">
+    <div>
+        <div class="card">
+            <div class="card-header">Temperature et Humidité en temps reel</div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">Date</th>
+                                <th scope="col">Temperature ( °C)</th>
+                                <th scope="col">Humidité ( %)</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngIf="moyenne?.length !=0">
+                            <tr *ngFor="let m of milieu ;let i=index">
+                                <td>{{m.created_at | date: 'dd-MM-yyyy HH:mm:ss'}}</td>
+                                <td *ngIf="m.temperature <=30" class="badge bg-success text-center mt-2"> {{m.temperature | number:"1.0-2"}}</td>
+                                <td *ngIf="m.temperature >30" class="badge bg-danger text-center mt-2"> {{m.temperature}} </td>
+                                <td> {{m.humidite}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mt-3">
+        <div class="card">
+            <div class="card-header">Moyenne temperature et humidité par jour</div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">Date</th>
+                                <th scope="col">Temperature ( °C)</th>
+                                <th scope="col">Humidité ( %)</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngIf="moyenne?.length !=0">
+                            <tr *ngFor="let m of moyenne ;let i=index">
+                                <td>{{m._id.jour}}-0{{m._id.mois}}-{{m._id.annee}}</td>
+                                <td *ngIf="m.temperature <=30" class="badge bg-success text-center mt-2"> {{m.temperature | number:"1.0-2"}}</td>
+                                <td *ngIf="m.temperature >30" class="badge bg-danger text-center mt-2"> {{m.temperature| number:"1.0-2"}} </td>
+                                <td> {{m.humidite | number:"1.0-2"}} </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
